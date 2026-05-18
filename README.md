@@ -13,6 +13,7 @@ A long-term emotional memory system for Claude. Tags memories using Russell's va
 ## 快速开始 / Quick Start（Docker Hub 预构建镜像，最简单）
 
 > 不需要 clone 代码，不需要 build，三步搞定。
+> 
 > 完全不会？没关系，往下看，一步一步跟着做。
 
 ### 第零步：装 Docker Desktop
