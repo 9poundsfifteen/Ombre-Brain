@@ -1,9 +1,9 @@
 # ============================================================
-# 阴影大脑 Docker 构建
+# Ombre Brain Docker Build
 # Docker 构建文件
 #
-# 构建：docker build -t ombre-brain .
-# 运行：docker run -e OMBRE_API_KEY=your-key -p 8000:8000 ombre-brain
+# Build: docker build -t ombre-brain .
+# Run:   docker run -e OMBRE_API_KEY=your-key -p 8000:8000 ombre-brain
 # ============================================================
 
 FROM python:3.12-slim
@@ -15,19 +15,20 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 复制项目文件 / 复制项目文件
-复制*.py .
+# Copy project files / 复制项目文件
+COPY *.py .
+COPY dashboard.html .
+COPY config.example.yaml ./config.yaml
 
-复制config.example.yaml ./config.yaml
-
-# 持久化挂载点：bucket数据
+# Persistent mount point: bucket data
 # 持久化挂载点：记忆数据
+VOLUME ["/app/buckets"]
 
-# 默认使用可流式处理的http协议（远程访问）
-# 容器场景默认使用 streamable-http
-环境变量OMBRE_TRANSPORT=streamable-http
-环境变量OMBRE_BUCKETS_DIR=/app/buckets
+# Default to streamable-http for container (remote access)
+# 容器场景默认用 streamable-http
+ENV OMBRE_TRANSPORT=streamable-http
+ENV OMBRE_BUCKETS_DIR=/app/bucket
 
-暴露 8000
+EXPOSE 8000
 
-命令 ["python", "server.py"]
+CMD ["python", "server.py"]
