@@ -1,9 +1,9 @@
 # ============================================================
-# Ombre Brain Docker Build
+# Ombre Brain Docker 构建
 # Docker 构建文件
 #
-# Build: docker build -t ombre-brain .
-# Run:   docker run -e OMBRE_API_KEY=your-key -p 8000:8000 ombre-brain
+# 构建：docker build -t ombre-brain .
+# 运行：docker run -e OMBRE_API_KEY=your-key -p 8000:8000 ombre-brain
 # ============================================================
 
 FROM python:3.12-slim
@@ -13,7 +13,7 @@ WORKDIR /app
 # 先安装依赖项（利用Docker缓存）
 # 先安装依赖（利用 Docker 缓存）
 COPY requirements.txt .
-运行pip install --no-cache-dir -r requirements.txt
+运行 pip 安装 --no-cache-dir -r requirements.txt
 
 # 复制项目文件 / 复制项目文件
 复制*.py .
@@ -25,8 +25,8 @@ COPY requirements.txt .
 
 # 默认使用可流式处理的http协议（远程访问）
 # 容器场景默认使用 streamable-http
-ENV OMBRE_TRANSPORT=streamable-http
-ENV OMBRE_BUCKETS_DIR=/app/buckets
+环境变量OMBRE_TRANSPORT=streamable-http
+环境变量OMBRE_BUCKETS_DIR=/app/buckets
 
 暴露 8000
 
