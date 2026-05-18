@@ -13,7 +13,7 @@ WORKDIR /app
 # 先安装依赖项（利用Docker缓存）
 # 先安装依赖（利用 Docker 缓存）
 COPY requirements.txt .
-运行 pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # 复制项目文件 / 复制项目文件
 复制*.py .
