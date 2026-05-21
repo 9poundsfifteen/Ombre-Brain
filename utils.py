@@ -16,7 +16,9 @@ import yaml
 import logging
 from pathlib import Path
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
+BEIJING_TZ = ZoneInfo("Asia/Shanghai")
 
 def load_config(config_path: str = None) -> dict:
     """
@@ -229,4 +231,4 @@ def now_iso() -> str:
     Return current time as ISO format string.
     返回当前时间的 ISO 格式字符串。
     """
-    return datetime.now().isoformat(timespec="seconds")
+    return datetime.now(BEIJING_TZ).isoformat(timespec="seconds")
